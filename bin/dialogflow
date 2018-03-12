@@ -21,15 +21,24 @@ const DF = require('../lib/api')
 const args = yargs.argv
 const [operation, type, id] = args._
 
-const accessToken = fs.readFileSync(args.token)
+var accessToken 
+
+// try reading token as file path
+try{
+	accessToken = fs.readFileSync(args.token)
+}catch(e){
+	// Otherwise, assume it's a token value
+	// if(args.token.length === 32){
+		accessToken = args.token
+	// }
+}
+DF.setTokenByType(type, accessToken)
 
 var payloadPath, payload
 if(args.payload){
 	payloadPath = path.resolve(process.cwd(), args.payload)
 	payload = require(payloadPath)
 }
-
-DF.setTokenByType(type, accessToken)
 
 DF.run(operation, type, {payload, id}).then(res => {
 	console.log(res)

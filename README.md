@@ -17,17 +17,17 @@ Install the CLI globally.
 View help: `dialogflow --help`
 
 ```
-    # create entities for dev app
-	dialogflow post entities --payload=path/to/entities.js --dev-token=./.dev-tokens/dev
+# create entities for dev app
+dialogflow post entities --payload=path/to/entities.js --dev-token=./.dev-tokens/dev
 
-    # update intents for prod app
-	dialogflow put intents -p=path/to/intents.json -t=./.dev-tokens/prod
+# update intents for prod app
+dialogflow put intents -p=path/to/intents.json -t=./.dev-tokens/prod
 
-    # get an intent from dev app
-	dialogflow get intents -t=./.dev-tokens/prod 05b02338-63b5-4a86-a08e-409ef5b5f208
-    
-    # get all intents and write to a file
-	dialogflow get intents -t=./.dev-tokens/prod >> output.json
+# get an intent from dev app
+dialogflow get intents -t=./.dev-tokens/prod 05b02338-63b5-4a86-a08e-409ef5b5f208
+
+# get all intents and write to a file
+dialogflow get intents -t=./.dev-tokens/prod >> output.json
 ```
 
 
@@ -46,9 +46,9 @@ Import the module
 Set the access token. Either store in a .gitignore'd file, or retrieve from an environment variable.
 
 ```
-    const devToken = require('./.access_tokens/dev')
-    DF.setDevToken(devToken)
-    DF.setClientToken(process.env.DIALOGFLOW_CLIENT_TOKEN)
+const devToken = require('./.access_tokens/dev')
+DF.setDevToken(devToken)
+DF.setClientToken(process.env.DIALOGFLOW_CLIENT_TOKEN)
 ```
 
 Now you can call some methods! 
@@ -57,25 +57,25 @@ Now you can call some methods!
 
 The module uses a DF method named by REST commands (get, post, put, delete). 
 
-Type is one of "intents" or "entities".
+Type is the name of the endpoint to call (query, intents, entities, userEntities, or contexts).
 
-Opts contain an id for targeting a specific object, and a payload (json) for post / put requests.
+Opts is an object that contains an id for targeting a specific object, and a payload (json) for post / put requests.
 
 ```
-    // get basic info for all intents
-    DF.get('intents').then(intents => console.log(intents))
-    
-    // update an intent
-    var opts = {id: uuid, payload: json}
-    DF.put('intents', opts).then(...)
+// get basic info for all intents
+DF.get('intents').then(intents => console.log(intents))
 
-    // create an intent
-    var opts = {payload: json}
-    DF.post('intents', opts).then(...)
-    
-    // delete an intent
-    var opts = {id: uuid}
-    DF.delete('intents', opts).then(...)
+// update an intent
+var opts = {id: uuid, payload: json}
+DF.put('intents', opts).then(...)
+
+// create an intent
+var opts = {payload: json}
+DF.post('intents', opts).then(...)
+
+// delete an intent
+var opts = {id: uuid}
+DF.delete('intents', opts).then(...)
 ```
 
 ## Running Tests
