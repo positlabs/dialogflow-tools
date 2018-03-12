@@ -1,0 +1,57 @@
+[{
+    "name": "_TEST_INTENT",
+    "auto": true,
+    "contexts": [],
+    "userSays": [{
+        "count": 0,
+        "data": [{
+            "text": " new game "
+        }]
+    }, {
+        "count": 0,
+        "data": [{
+            "text": " start a new game "
+        }]
+    }, {
+        "count": 0,
+        "data": [{
+            "text": " restart the game "
+        }]
+    }, {
+        "count": 0,
+        "data": [{
+            "text": " I'd like to play a new game "
+        }]
+    }, {
+        "count": 0,
+        "data": [{
+            "text": " OK Google, talk to whodunnit "
+        }]
+    }, {
+        "count": 0,
+        "data": [{
+            "text": " OK Google, talk to who done it "
+        }]
+    }, {
+        "count": 0,
+        "data": [{
+            "text": " OK Google, talk to grilled "
+        }]
+    }],
+    "responses": [{
+        "action": "INTRO",
+        "affectedContexts": [],
+        "defaultResponsePlatforms": {
+            "google": true
+        },
+        "messages": [],
+        "parameters": [],
+        "resetContexts": true
+    }],
+    "events": [],
+    "templates": [],
+    "priority": 500000,
+    "webhookUsed": true,
+    "webhookForSlotFilling": false,
+    "fallbackIntent": false
+}]

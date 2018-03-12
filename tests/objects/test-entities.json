@@ -1,0 +1,29 @@
+[{
+    "name": "asdfasdfasdf",
+    "isOverridable": true,
+    "isEnum": false,
+    "automatedExpansion": true,
+    "entries": [
+        {
+            "value": "paint thinner",
+            "synonyms": [
+                "paint thinner",
+                "turpentine"
+            ]
+        },
+        {
+            "value": "broom closet",
+            "synonyms": [
+                "closet",
+                "broom closet",
+                "the broom closet"
+            ]
+        },
+        {
+            "value": "alibi",
+            "synonyms": [
+                "alibi"
+            ]
+        }
+    ]
+}]

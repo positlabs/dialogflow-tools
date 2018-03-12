@@ -1,0 +1,38 @@
+#!/usr/bin/env node
+/* globals console, process */
+
+const yargs = require('yargs')
+	.demandCommand(2)
+	.alias('p', 'payload')
+	.alias('t', 'token')
+	.usage('Usage: $0 <operation> <endpoint> <optionalID> --payload=[path] --token=[tokenPath]')
+	.usage('Payload should be an array of objects')
+	.usage('Get the developer token from the dialogflow agent. https://dialogflow.com/docs/reference/agent/')
+	.example('$0 post entities --payload=path/to/entities.js --token=./.tokens/dev', 'create entities for dev app')
+	.example('$0 put intents -p=path/to/intents.json -t=./.tokens/prod', 'update intents for prod app')
+	.example('$0 get intents 05b02338-63b5-4a86-a08e-409ef5b5f208', 'get an intent from dev app')
+	.example('$0 get intents >> output.json', 'get all intents and write to a file')
+	.epilog('Created by Josh Beckwith // Posit Labs')
+
+const path = require('path')
+const fs = require('fs')
+const DF = require('../lib/api')
+
+const args = yargs.argv
+const [operation, type, id] = args._
+
+const accessToken = fs.readFileSync(args.token)
+
+var payloadPath, payload
+if(args.payload){
+	payloadPath = path.resolve(process.cwd(), args.payload)
+	payload = require(payloadPath)
+}
+
+DF.setTokenByType(type, accessToken)
+
+DF.run(operation, type, {payload, id}).then(res => {
+	console.log(res)
+}).catch(e => {
+	console.error(e)
+})
